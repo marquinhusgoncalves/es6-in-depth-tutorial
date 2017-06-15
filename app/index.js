@@ -1,5 +1,6 @@
 import {fellowship, total} from './fellowship';
 import {add, multiply} from './math';
+import {Animal} from './Animal';
 
 console.log(fellowship, total);
 
@@ -45,3 +46,37 @@ console.log('butterfly'.includes('tt')); //true
 
 console.log('butterfly'.startsWith('flower')); //false
 
+// Class
+
+class Lion extends Animal {
+  constructor(name, heigth, color) {
+    super(name, heigth);
+    this.color = color;
+  }
+
+  hello() {
+    console.log(`Hi! I'm ${this.name} from Pride Rock`);
+  }
+};
+
+let son = new Lion('Simba', 23, 'Gold');
+console.log(son);
+son.hello();
+
+// Prototype
+
+function Vehicle(make, year) {
+  this.make = make;
+  this.year = year;
+}
+
+Vehicle.prototype.color;
+
+Vehicle.prototype.bio = () => {
+    return `A ${this.color} ${this.make} made in ${this.year}.`;
+};
+
+let s = new Vehicle("Tesla", 2017);
+s.color = "black";
+
+console.log(s.bio());
