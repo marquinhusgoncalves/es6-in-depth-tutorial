@@ -72,11 +72,38 @@ function Vehicle(make, year) {
 
 Vehicle.prototype.color;
 
-Vehicle.prototype.bio = () => {
+Vehicle.prototype.bio = function() {
     return `A ${this.color} ${this.make} made in ${this.year}.`;
 };
 
 let s = new Vehicle("Tesla", 2017);
 s.color = "black";
 
+console.log(s);
 console.log(s.bio());
+
+// Data Structures in ES6
+// Ser()
+
+let ds = new Set();
+ds.add(10);
+ds.add(20);
+ds.add('Woohoo');
+ds.add({x: 'xis', h: 'aga'});
+
+console.log(ds);
+console.log(ds.size);
+console.log(ds.has(5));
+
+let numbers = [1, 5, 9, 40, 98];
+let setNumber = new Set(numbers);
+console.log(setNumber);
+
+for (let element of setNumber.values()) {
+  console.log(element);
+};
+
+let chars = 'kajsfghDsahGhjCdshjvCHDJSVcjhsvcxsD';
+let chars_arr = chars.split('');
+let newChars = new Set(chars_arr);
+console.log(newChars);
