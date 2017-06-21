@@ -107,3 +107,36 @@ let chars = 'kajsfghDsahGhjCdshjvCHDJSVcjhsvcxsD';
 let chars_arr = chars.split('');
 let newChars = new Set(chars_arr);
 console.log(newChars);
+
+// Maps
+
+let exemploMap = new Map();
+let key_1 = 'strig key';
+let key_2 = {a: 'key'};
+let key_3 = function() {};
+exemploMap.set(key_1, 'return value for a string key');
+exemploMap.set(key_2, 'return value for a string key');
+exemploMap.set(key_3, 'return value for a string key');
+console.log(exemploMap);
+
+let numArr = [[1, 'one'], [2, 'two'], [3, 'three']];
+let valMap = new Map(numArr);
+
+for (let [key, value] of valMap.entries()) {
+  console.log(`${key} points to ${value}`);
+}
+
+let string = 'vdvbasdhjvbavdfvadvfvh';
+
+let letters = new Map();
+
+for (let i = 0; i < string.length; i++) {
+  let letter = string[i];
+  if (!letters.has(letter)) {
+    letters.set(letter, 1);
+  } else {
+    letters.set(letter, letters.get(letter) + 1);
+  }
+}
+
+console.log(letters);
