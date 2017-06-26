@@ -140,3 +140,76 @@ for (let i = 0; i < string.length; i++) {
 }
 
 console.log(letters);
+
+// Closures
+
+let call = () => {
+  let secret = 'ES6 Rocks';
+  let reveal = () => {
+    console.log(secret);
+  }
+  reveal();
+}
+
+call();
+
+const addSuffix = (x) => {
+  const concat = (y) => {
+    return y + x;
+  }
+  return concat;
+}
+
+let add_ness = addSuffix("ness");
+console.log(add_ness);
+let h = add_ness("happi");
+console.log(h);
+
+let add_ful = addSuffix("full");
+let f = add_ful("fruit");
+console.log(f);
+
+// Old
+// const product = (x) => {
+//   return y => {
+//     return y * x;
+//   }
+// }
+
+// Refactor
+const product = x => y => y * x;
+
+let mult5 = product(5);
+let double = product(2);
+
+console.log(mult5(2));
+console.log(double(9));
+
+const budget = () => {
+  let balance = 0;
+  let changeBal = (val) => {
+    return balance += val;
+  }
+
+  const deposito20 = () => changeBal(20);
+  const withdraw20 = () => changeBal(-20);
+  const check = () => balance;
+
+  // Old
+  // return {
+  //   deposito20: deposito20,
+  //   withdraw20: withdraw20,
+  //   check: check
+  // }
+
+  // Refactor
+  return { deposito20, withdraw20, check }
+}
+
+let wallet = budget();
+console.log(wallet);
+wallet.deposito20();
+wallet.withdraw20();
+console.log(wallet.check());
+console.log(wallet.balance);
+
