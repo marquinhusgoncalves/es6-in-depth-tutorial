@@ -8,5 +8,10 @@ Discover answers to coding challenges and quizzes.
 
 Build a starter project for es6 in webpack.
 
-
 Enjoy the course, and keep coding!
+
+## To start project
+
+`npm run build - webpack`
+
+`npm run start - webpack-dev-server`

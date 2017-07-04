@@ -213,3 +213,170 @@ wallet.withdraw20();
 console.log(wallet.check());
 console.log(wallet.balance);
 
+// Generators
+
+function* letterMaker() {
+  yield 'a';
+  yield 'b';
+  yield 'c';  
+}
+
+let letterGen = letterMaker();
+console.log(letterGen.next().value);
+console.log(letterGen.next().value);
+console.log(letterGen.next().value);
+console.log(letterGen.next().value);
+
+function* countMaker() {
+  let count = 0;
+  while (count < 3) {
+    yield count += 1;
+  }
+}
+
+let countGen = countMaker();
+console.log(countGen.next().value);
+console.log(countGen.next().value);
+console.log(countGen.next().value);
+console.log(countGen.next().value);
+
+function* events() {
+  let count = 0;
+  while(true) {
+    count += 2;
+    let reset = yield count;
+    if(reset) {
+      count = 0;
+    }
+  }
+}
+
+let seuqence = events();
+console.log(seuqence.next().value);
+console.log(seuqence.next().value);
+console.log(seuqence.next().value);
+console.log(seuqence.next(true).value);
+console.log(seuqence.next().value);
+
+// Generators vs Iterators
+//  const arrayIteraror = (array) => {
+//   let index = 0;
+//   return {
+//     next: () => {
+//       if(index < array.length) {
+//         let next = array[index];
+//         index += 1;
+//         return next;
+//       }
+//     }
+//   }
+// }
+
+// let it = arrayIteraror([1, 2, 3]);
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+
+function* arrayIteraror() {
+  yield arguments;
+}
+
+var it = arrayIteraror(1, 2, 3);
+console.log(it.next().value);
+
+// Promisses
+// let p = new Promise((resolve, reject) => {
+//   resolve('Resoved promisse data');
+// })
+
+// p.then(respoonse => console.log(respoonse));
+
+// let p = new Promise((resolve, reject) => {
+//   reject('Reject promisse data');
+// })
+
+// p.then(respoonse => console.log(respoonse))
+//  .catch(error => console.log(error));
+
+let p = new Promise((resolve, reject) => {
+  setTimeout(() => resolve('Resolve promisse data'), 1500);
+})
+
+p.then(respoonse => console.log(respoonse))
+ .catch(error => console.log(error));
+
+console.log('after promise consumption');
+
+// Promisses - Ajax
+// var root = 'https://jsonplaceholder.typicode.com';
+
+// $.ajax({
+//   url: root + '/posts/1',
+//   method: 'GET'
+// }).then(function(data) {
+//   console.log(data);
+// });
+
+//Promisses - Fetch
+const root = 'https://jsonplaceholder.typicode.com/posts/1';
+
+fetch(root, {method: "GET"})
+	.then(response => response.json())
+	.then(json => console.log(json));
+
+// ES7
+let newA = Math.pow(2, 5);
+console.log(newA);
+
+let newB = 2**5;
+console.log(newB);
+
+let newC = 'wunderful'.includes('wall');
+console.log(newC);
+
+let newD = [1, 2, 3, 4, 5, 6].includes(7);
+console.log(newD);
+
+// ES8
+let obj = {a: 'one', b: 'two', c: 'three'};
+let keys = Object.keys(obj);
+console.log(keys);
+
+let newValues = Object.values(obj);
+console.log(newValues);
+
+let entries = Object.entries(obj);
+console.log(entries);
+
+for(let entry of entries) {
+	console.log(`key: ${entry[0]}, value: ${entry[1]}`);
+}
+
+// Async
+async function async_one() {
+	return 'one';
+}
+// async_one().then(response => console.log(response)); //Descomentar para usar
+
+async function async_two() {
+	throw new Error('Issue with async!');
+}
+// async_two().catch(error => console.log(error)); //Descomentar para usar
+
+async function async_three() {
+	const one = await async_one();
+	console.log(one);
+	const two = await async_two();
+	console.log(two)
+}
+
+async_three();
+
+async function async_four() {
+	const[res_one, res_two] = await Promise.all(
+		[async_one(), async_two()]
+	)
+	console.log(res_one, res_two);
+}
+async_four();
